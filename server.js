@@ -59,6 +59,19 @@ app.get('/employees/:id', async (req, res) => {
 }
 })
 
+// get employees according to department
+app.get('/departmentdetails/:department', async (req, res) => {
+  try {
+    const {department} = req.params;
+    const employeesCursor = await userColl.find({ department: department });
+    const employees = await employeesCursor.toArray();
+    res.status(200).json({status: true,  employees: employees })
+} catch (error) {
+  console.log(error)
+    res.status(500).json({status: false, message: error.message });
+}
+})
+
 //Update employee details
 app.put('/employees/:id', async (req, res) => {
   try {
