@@ -147,6 +147,19 @@ app.get('/departments', async (req, res) => {
 }
 })
 
+// get single department data 
+app.get('/departments/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const objectId = new ObjectId(id);
+    const departmentCursor = await departmentsColl.find({ "_id": objectId });
+    const department = await departmentCursor.toArray();
+    res.status(200).json({status: true,  department: department })
+} catch (error) {
+    res.status(500).json({status: false, message: error.message });
+}
+})
+
 // add a department
 app.post('/departments', async (req, res) => {
   try {
@@ -174,9 +187,8 @@ app.put('/departments/:id', async (req, res) => {
         { _id: objectId },
         { $set: { name: data.name } }
       );
-      if (!result) return res.status(404).json({ message: `cannot find any user with ID: ${id}` });
-      const updatedProduct = await Product.findById(id);
-      res.status(200).json(updatedProduct);
+      if (!result) return res.status(404).json({ message: `cannot find any department with ID: ${id}` });
+      res.status(200).json({status: true, message: 'Updated successfully'});
   } catch (error) {
       res.status(500).json({ message: error.message })
   }
