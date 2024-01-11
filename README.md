@@ -2,6 +2,10 @@
 
 This project was made with Node , Express, MongoDB
 
+In config.js enter your mongodb uri :
+### `const MONGODB_URI = "NEED_MONGODB_URI_HERE";`
+
+
 ## Available Scripts
 
 ### `npm i .`
