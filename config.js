@@ -1,4 +1,4 @@
-const MONGODB_URI = "mongodb+srv://jai:admin123@ipangramtest.mhakqsg.mongodb.net/?retryWrites=true&w=majority";
+const MONGODB_URI = "NEED_MONGODB_URI_HERE";
 const PORT = process.env.PORT || 4000;
 
 const CONFIG = {
